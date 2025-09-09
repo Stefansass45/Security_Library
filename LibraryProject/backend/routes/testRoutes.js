@@ -1,0 +1,12 @@
+const express = require('express')
+// we are calling in our test controller so that we can use its methods
+const testController = require('../controllers/testController.js')
+// setup singleton for the router
+const router = express.Router();
+// here we first specify the type (.get for get request), we then specify what url it lives at
+// and finally, we tell it which method in the controller will handle the logic
+router.get('/healthcheck', testController.healthcheck)
+router.post('/greet', testController.greeter)
+
+// exporting our router (map), so that we can call it in the main program (app.js)
+module.exports = router 
