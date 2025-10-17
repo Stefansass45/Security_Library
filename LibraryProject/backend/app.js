@@ -2,18 +2,20 @@
 const express = require('express');
 require('dotenv').config();
 const { connectToMongo } = require('./services/dbService.js');
-const {securityMiddlewares} = require ("./middleware/securityMiddleware.js")
+const { securityMiddlewares } = require('./middlewares/securityMiddleware.js');
 
 // call in our router
 const testRoutes = require('./routes/testRoutes.js');
 const bookRoutes = require('./routes/bookRoutes.js');
+const authRoutes = require('./routes/authRoutes.js')
 
 // setting up express using the default parameters
 const app = express();
 
 // calling in express.json middleware, so that our app can handle json
 app.use(express.json());
-// setup our security middleware
+
+// set up our security middleware
 securityMiddlewares(app);
 
 // log every request
@@ -30,6 +32,7 @@ app.use((req, res, next) => {
 // finally, we point the app to where our routes live.
 app.use('/v1/test', testRoutes);
 app.use('/v1/books', bookRoutes);
+app.use('/v1/auth', authRoutes);
 
 const port = process.env.API_PORT || 3000
 

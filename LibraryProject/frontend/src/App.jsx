@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 
 function App() {
@@ -15,7 +16,9 @@ function App() {
         {/* each route has a path (where it lives), and an element (what page it related to) */}
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        {/* because dashboard is now wrapped in ProtectedRoute, authentication will be checked in order
+        to navigate there */ }
+        <Route path="/dashboard" element={<ProtectedRoute> <Dashboard/> </ProtectedRoute>}/>
       </Routes>
     </Router>
   )

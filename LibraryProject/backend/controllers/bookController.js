@@ -15,7 +15,7 @@ const getBooks = async (req, res) => {
   }
 };
 
-// GET: a single books
+// GET: a single book
 const getBook = async (req, res) => {
   // get the id of the book that the user is looking for, from the parameters
   const id = req.params.id;
@@ -95,8 +95,8 @@ const updateBook = async (req, res) => {
   }
 };
 
-// DELETE: yeet a book from existence
-const yeetBook = async (req, res) => {
+// DELETE: nuke a book from existence
+const deleteBook = async (req, res) => {
   // get the id of the book we want to remove
   const id = req.params.id;
 
@@ -127,5 +127,5 @@ module.exports = {
   getBook,
   createBook,
   updateBook,
-  yeetBook,
+  deleteBook,
 };
